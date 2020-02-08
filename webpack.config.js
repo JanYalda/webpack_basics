@@ -1,16 +1,15 @@
 var webpack = require('webpack');
 var path = require('path');
+var inProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: 'development',
   entry: ".\\src\\index.js",
   output: {
     path: path.resolve(__dirname, ".\\dist"),
     filename: 'main.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         // pipe works right to left.
         use: ['style-loader', 'css-loader']
@@ -22,6 +21,14 @@ module.exports = {
         loader: "babel-loader"
       }
     ]
+  },
+
+  optimization: {
+    minimize: false
   }
 
+}
+
+if (inProduction) {
+  module.exports.optimization.minimize = true;
 }

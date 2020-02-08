@@ -43,3 +43,7 @@
 
 ### Babel preset install:
 `npm install @babel/preset-env --save-dev`
+
+### Magnification and Environments:
+> To specify NODE_ENV across platforms pre-append 'env' to the variable:
+> `env NODE_ENV=development webpack`

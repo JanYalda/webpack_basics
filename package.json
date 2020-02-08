@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=development",
-    "watch": "npm run build -- --watch"
+    "dev": "env NODE_ENV=development webpack",
+    "production": "env NODE_ENV=production webpack",
+    "watch": "npm run dev -- --watch"
   },
   "keywords": [],
   "author": "",
