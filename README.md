@@ -14,19 +14,19 @@
 > directory containing the main.js file to fix the issue.
 
 ### Run webpack command try one of the following (use path slash based on you OS):
-`webpack`
-`node_modules/.bin/webpack`
+- `webpack`
+- `node_modules/.bin/webpack`
 
 ### Modules(simply just js files) using ES .vs common js
-> ES export/import
+- ES export/import
 `export default function(message) {
   alert(message);
 }`
 `import notify from './Notification';`
-> ES multi-function exports, import must specify each within {...}
+- ES multi-function exports, import must specify each within {...}
 `import {notify} from './Notification';`
 
-> Common js export/import
+- Common js export/import
 `module.exports = function(message) {
   alert(message);
 }`
