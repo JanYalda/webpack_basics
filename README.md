@@ -31,3 +31,9 @@
   alert(message);
 }`
 `var notify = require('./Notification');`
+
+### Loaders css loader install:
+`npm install css-loader --save-dev`
+
+### Install style loader to inject the styles in html css-loader alone *can't*:
+`npm install style-loader --save-dev`
