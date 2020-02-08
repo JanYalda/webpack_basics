@@ -1,5 +1,10 @@
 $primary: green;
+$blue: blue;
 
 body {
   background: $primary;
+}
+
+p {
+  color: $blue;
 }

@@ -1,12 +1,19 @@
 var webpack = require('webpack');
 var path = require('path');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 var inProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: ".\\src\\index.js",
+  entry: {
+    app: [
+      ".\\src\\index.js",
+      ".\\src\\main.scss"
+    ]
+  },
   output: {
     path: path.resolve(__dirname, ".\\dist"),
-    filename: 'main.js'
+    filename: '[name].js'
   },
   module: {
     rules: [{
@@ -23,10 +30,21 @@ module.exports = {
 
       {
         test: /\.s[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
   },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+
+     // currently not working as it allows minimizes the css
+    new webpack.LoaderOptionsPlugin({
+      minimize: inProduction
+    })
+  ],
 
   optimization: {
     minimize: false

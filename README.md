@@ -50,3 +50,6 @@
 
 ### Sass compilation, install loader:
 `npm install sass-loader node-sass --save-dev`
+
+### Extract css to dedicated file:
+`npm install --save-dev mini-css-extract-plugin`
