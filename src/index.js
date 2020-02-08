@@ -1,3 +1,5 @@
+require('./main.scss');
+
 class Form {
   constructor() {
     let numbers = [5, 10, 15].map( number => number*2);

@@ -47,3 +47,6 @@
 ### Magnification and Environments:
 > To specify NODE_ENV across platforms pre-append 'env' to the variable:
 > `env NODE_ENV=development webpack`
+
+### Sass compilation, install loader:
+`npm install sass-loader node-sass --save-dev`
