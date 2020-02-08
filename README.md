@@ -53,3 +53,6 @@
 
 ### Extract css to dedicated file:
 `npm install --save-dev mini-css-extract-plugin`
+
+### File URL processing:
+`npm install file-loader --save-dev`

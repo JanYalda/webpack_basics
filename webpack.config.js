@@ -31,6 +31,14 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[hash].[ext]'
+        }
       }
     ]
   },
@@ -40,7 +48,7 @@ module.exports = {
       filename: '[name].css',
     }),
 
-     // currently not working as it allows minimizes the css
+    // currently not working as it allows minimizes the css
     new webpack.LoaderOptionsPlugin({
       minimize: inProduction
     })
