@@ -9,10 +9,19 @@ module.exports = {
     filename: 'main.js'
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      // pipe works right to left.
-      use: ['style-loader', 'css-loader']
-    }]
+    rules: [
+      {
+        test: /\.css$/,
+        // pipe works right to left.
+        use: ['style-loader', 'css-loader']
+      },
+
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      }
+    ]
   }
+
 }

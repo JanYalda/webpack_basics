@@ -35,5 +35,11 @@
 ### Loaders css loader install:
 `npm install css-loader --save-dev`
 
-### Install style loader to inject the styles in html css-loader alone *can't*:
+### Install style loader to inject the styles in html css-loader alone **can't**:
 `npm install style-loader --save-dev`
+
+### ES compilation using **Babel** loader install useful docs(https://babeljs.io/setup):
+`npm install --save-dev babel-loader @babel/core`
+
+### Babel preset install:
+`npm install @babel/preset-env --save-dev`
