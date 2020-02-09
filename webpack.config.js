@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var glob = require('glob');
+let PurifyCssPlugin = require('purgecss-webpack-plugin');
 
 var inProduction = process.env.NODE_ENV === 'production';
 
@@ -46,6 +48,11 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+
+    new PurifyCssPlugin({
+      paths: glob.sync(path.join(__dirname, 'index.html'))
+      // laravel ex: resources/views/**/*.blade.php
     }),
 
     // currently not working as it allows minimizes the css

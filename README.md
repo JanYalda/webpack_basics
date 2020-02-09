@@ -56,3 +56,6 @@
 
 ### File URL processing:
 `npm install file-loader --save-dev`
+
+### Stipe unused CSS:
+`npm i -D purgecss-webpack-plugin`
