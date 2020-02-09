@@ -59,3 +59,9 @@
 
 ### Stipe unused CSS:
 `npm i -D purgecss-webpack-plugin`
+
+### Long-term Caching (didn't work at the time so I removed it):
+`npm install clean-webpack-plugin --save-dev`
+
+### Auto Image Optimization:
+> EX: image-loader
