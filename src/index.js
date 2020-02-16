@@ -7,6 +7,22 @@
 //
 // new Form();
 
+
+var announcer = new class {
+  constructor(){
+    this.vue = new Vue();
+  }
+
+  announce(name, data){
+    this.vue.$emit(name, data);
+  }
+
+  handle(name, callback){
+    this.vue.$on(name, callback);
+  }
+
+}
+
 Vue.component('task-list', {
   template: `
     <div>
@@ -68,7 +84,8 @@ Vue.component('modal', {
     <div class="modal" tabindex="-1" role="dialog" style="display: block">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header border-0">
+          <div class="modal-header">
+            <slot name="header"></slot>
             <button type="button" class="close" @click="$emit('close')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -76,13 +93,17 @@ Vue.component('modal', {
           <div class="modal-body text-center py-5">
             <slot></slot>
           </div>
+          <div class="modal-footer">
+            <slot name="footer">
+              <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
+            </slot>
+          </div>
         </div>
       </div>
     </div>
   `,
 
 })
-
 
 Vue.component('tabs', {
   template: `
@@ -113,7 +134,7 @@ Vue.component('tabs', {
       this.tabs.forEach((tab, i) => {
         tab.isActive = (tab.title == selectedTab.title);
       });
-
+      announcer.announce('done');
     }
   }
 });
@@ -156,5 +177,11 @@ new Vue({
     return {
       showModal: false
     }
+  },
+
+  mounted() {
+    announcer.handle('done', function(){
+      console.warn('DONE');
+    })
   }
 });

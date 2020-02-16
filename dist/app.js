@@ -96,6 +96,12 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 // class Form {
 //   constructor() {
 //     let numbers = [5, 10, 15].map( number => number*2);
@@ -104,6 +110,29 @@ module.exports = __webpack_require__(2);
 // }
 //
 // new Form();
+var announcer = new (
+/*#__PURE__*/
+function () {
+  function _class() {
+    _classCallCheck(this, _class);
+
+    this.vue = new Vue();
+  }
+
+  _createClass(_class, [{
+    key: "announce",
+    value: function announce(name, data) {
+      this.vue.$emit(name, data);
+    }
+  }, {
+    key: "handle",
+    value: function handle(name, callback) {
+      this.vue.$on(name, callback);
+    }
+  }]);
+
+  return _class;
+}())();
 Vue.component('task-list', {
   template: "\n    <div>\n      <task v-for=\"(task, index) in tasks\" :key=\"index\">{{ task.desc }}</task>\n    </div>",
   data: function data() {
@@ -139,7 +168,7 @@ Vue.component('message', {
   }
 });
 Vue.component('modal', {
-  template: "\n    <div class=\"modal\" tabindex=\"-1\" role=\"dialog\" style=\"display: block\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header border-0\">\n            <button type=\"button\" class=\"close\" @click=\"$emit('close')\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body text-center py-5\">\n            <slot></slot>\n          </div>\n        </div>\n      </div>\n    </div>\n  "
+  template: "\n    <div class=\"modal\" tabindex=\"-1\" role=\"dialog\" style=\"display: block\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <slot name=\"header\"></slot>\n            <button type=\"button\" class=\"close\" @click=\"$emit('close')\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body text-center py-5\">\n            <slot></slot>\n          </div>\n          <div class=\"modal-footer\">\n            <slot name=\"footer\">\n              <button type=\"button\" class=\"btn btn-secondary\" @click=\"$emit('close')\">Close</button>\n            </slot>\n          </div>\n        </div>\n      </div>\n    </div>\n  "
 });
 Vue.component('tabs', {
   template: "\n    <div>\n      <ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">\n        <li v-for=\"tab in tabs\">\n          <a :href=\"tab.href\" @click=\"selectTab(tab)\" :class=\"{'active' : tab.isActive, 'nav-link' : 1}\">{{tab.title}}</a>\n        </li>\n      </ul>\n      <div class=\"tab-content\" id=\"myTabContent\">\n        <slot></slot>\n      </div>\n    </div>\n  ",
@@ -156,6 +185,7 @@ Vue.component('tabs', {
       this.tabs.forEach(function (tab, i) {
         tab.isActive = tab.title == selectedTab.title;
       });
+      announcer.announce('done');
     }
   }
 });
@@ -189,6 +219,11 @@ new Vue({
     return {
       showModal: false
     };
+  },
+  mounted: function mounted() {
+    announcer.handle('done', function () {
+      console.warn('DONE');
+    });
   }
 });
 

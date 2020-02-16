@@ -31,7 +31,13 @@
       </div>
       <div class="col-12 py-3">
         <modal v-if="showModal" @close="showModal = false">
+          <template slot="header">
+            Modal Title
+          </template>
           Wooaahh...
+          <!-- <div slot="footer">
+            <button type="button" class="btn btn-secondary" @click="showModal = false">CLOSE IT</button>
+          </div> -->
         </modal>
         <button type="button" class="btn btn-primary" @click="showModal = true" >
           Launch modal
