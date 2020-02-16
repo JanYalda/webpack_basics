@@ -138,8 +138,58 @@ Vue.component('message', {
     };
   }
 });
+Vue.component('modal', {
+  template: "\n    <div class=\"modal\" tabindex=\"-1\" role=\"dialog\" style=\"display: block\">\n      <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header border-0\">\n            <button type=\"button\" class=\"close\" @click=\"$emit('close')\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body text-center py-5\">\n            <slot></slot>\n          </div>\n        </div>\n      </div>\n    </div>\n  "
+});
+Vue.component('tabs', {
+  template: "\n    <div>\n      <ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">\n        <li v-for=\"tab in tabs\">\n          <a :href=\"tab.href\" @click=\"selectTab(tab)\" :class=\"{'active' : tab.isActive, 'nav-link' : 1}\">{{tab.title}}</a>\n        </li>\n      </ul>\n      <div class=\"tab-content\" id=\"myTabContent\">\n        <slot></slot>\n      </div>\n    </div>\n  ",
+  data: function data() {
+    return {
+      tabs: []
+    };
+  },
+  created: function created() {
+    this.tabs = this.$children;
+  },
+  methods: {
+    selectTab: function selectTab(selectedTab) {
+      this.tabs.forEach(function (tab, i) {
+        tab.isActive = tab.title == selectedTab.title;
+      });
+    }
+  }
+});
+Vue.component('tab', {
+  props: {
+    title: {
+      required: true
+    },
+    selected: {
+      "default": false
+    }
+  },
+  template: "\n    <div class=\"py-2 px-1\" v-show=\"isActive\">\n      <p>\n        <slot></slot>\n      </p>\n    </div>",
+  data: function data() {
+    return {
+      isActive: false
+    };
+  },
+  computed: {
+    href: function href() {
+      return '#' + this.title.toLowerCase().replace(/ /g, '-');
+    }
+  },
+  mounted: function mounted() {
+    this.isActive = this.selected;
+  }
+});
 new Vue({
-  el: "#root"
+  el: "#root",
+  data: function data() {
+    return {
+      showModal: false
+    };
+  }
 });
 
 /***/ }),

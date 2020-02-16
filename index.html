@@ -24,8 +24,28 @@
     </div>
 
 
-    <message title="Test" body="Hello world!"></message>
-    <message title="Test.." body="Hello there!"></message>
+    <div class="row">
+      <div class="col-12 py-3">
+        <message title="Test" body="Hello world!"></message>
+        <message title="Test.." body="Hello there!"></message>
+      </div>
+      <div class="col-12 py-3">
+        <modal v-if="showModal" @close="showModal = false">
+          Wooaahh...
+        </modal>
+        <button type="button" class="btn btn-primary" @click="showModal = true" >
+          Launch modal
+        </button>
+      </div>
+      <div class="col-12 py-3">
+        <tabs>
+          <tab title="Home" selected="true">Lorem ipsum dolor sit amet, consectetur adipisicing elit,</tab>
+          <tab title="About Us">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</tab>
+          <tab title="Contact Us">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</tab>
+        </tabs>
+      </div>
+    </div>
+
 
 
   </div>
