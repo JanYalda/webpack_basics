@@ -96,18 +96,51 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Form = function Form() {
-  _classCallCheck(this, Form);
-
-  var numbers = [5, 10, 15].map(function (number) {
-    return number * 2;
-  });
-  console.log(numbers);
-};
-
-new Form();
+// class Form {
+//   constructor() {
+//     let numbers = [5, 10, 15].map( number => number*2);
+//     console.log(numbers);
+//   }
+// }
+//
+// new Form();
+Vue.component('task-list', {
+  template: "\n    <div>\n      <task v-for=\"(task, index) in tasks\" :key=\"index\">{{ task.desc }}</task>\n    </div>",
+  data: function data() {
+    return {
+      tasks: [{
+        desc: 'do this',
+        complete: false
+      }, {
+        desc: 'do that',
+        complete: false
+      }, {
+        desc: 'do that...',
+        complete: false
+      }]
+    };
+  }
+});
+Vue.component('task', {
+  template: '<li><slot></slot></li>',
+  data: function data() {
+    return {
+      message: ""
+    };
+  }
+});
+Vue.component('message', {
+  props: ['title', 'body'],
+  template: "\n    <div class=\"card my-3\" v-show=\"isVisible\">\n      <div class=\"card-header d-flex justify-content-between\">\n          <h5>{{ title }}</h5>\n          <button type=\"button\" class=\"close\" @click=\"isVisible = false\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n      </div>\n      <div class=\"card-body\">\n        <p>{{ body }}</p>\n      </div>\n    </div>\n  ",
+  data: function data() {
+    return {
+      isVisible: true
+    };
+  }
+});
+new Vue({
+  el: "#root"
+});
 
 /***/ }),
 /* 2 */
