@@ -213,6 +213,13 @@ Vue.component('tab', {
     this.isActive = this.selected;
   }
 });
+Vue.component('plain', {
+  data: function data() {
+    return {
+      percentage: 50
+    };
+  }
+});
 new Vue({
   el: "#root",
   data: function data() {

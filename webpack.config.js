@@ -8,11 +8,6 @@ let CustomPlugin = require('./build/plugins/CustomPlugin');
 var inProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-
-  devServer: {
-    // contentBase: path.join(__dirname, 'index.html'),
-  },
-
   entry: {
     app: [
       ".\\src\\index.js",
@@ -76,7 +71,12 @@ module.exports = {
 
   optimization: {
     minimize: false
-  }
+  },
+
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
 
 }
 

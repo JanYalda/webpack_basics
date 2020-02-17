@@ -7,7 +7,7 @@
     "dev": "env NODE_ENV=development webpack",
     "production": "env NODE_ENV=production webpack",
     "watch": "npm run dev -- --watch",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "env NODE_ENV=development webpack-dev-server --open --inline --hot"
   },
   "keywords": [],
   "author": "",

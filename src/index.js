@@ -171,6 +171,14 @@ Vue.component('tab', {
 });
 
 
+Vue.component('plain', {
+  data(){
+    return {
+      percentage: 50
+    }
+  }
+});
+
 new Vue({
   el: "#root",
   data(){
